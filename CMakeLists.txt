@@ -3,4 +3,4 @@ project(emulator)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(emulator main.cpp Register.cpp Register.h FlagRegister.cpp FlagRegister.h constants.h Memory.cpp Memory.h Ports.cpp Ports.h DataBus.cpp DataBus.h AddressBus.cpp AddressBus.h)
+add_executable(emulator main.cpp Components/Register.cpp Components/Register.h Components/FlagRegister.cpp Components/FlagRegister.h Components/constants.h Components/Memory.cpp Components/Memory.h Components/Ports.cpp Components/Ports.h Components/DataBus.cpp Components/DataBus.h Components/AddressBus.cpp Components/AddressBus.h Assembler/Parser.cpp Assembler/Parser.h Assembler/Tockenizer.cpp Assembler/Tockenizer.h Assembler/Assembler.cpp Assembler/Assembler.h)
