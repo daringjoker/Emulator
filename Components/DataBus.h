@@ -4,9 +4,15 @@
 
 #ifndef EMULATOR_DATABUS_H
 #define EMULATOR_DATABUS_H
-
+#include "constants.h"
 
 class DataBus {
+private:
+    Byte data;
+public:
+    void write(Byte data);
+    Byte read();
+
 
 };
 
