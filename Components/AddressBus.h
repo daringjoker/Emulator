@@ -11,8 +11,8 @@ private:
 
     Word addr;
 public:
-    void ReadAddress(Word addr);
-    void WriteAddress();
+    void Write(Word addr);
+    Word Read();
 
 
 };
