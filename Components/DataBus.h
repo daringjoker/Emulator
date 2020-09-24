@@ -7,8 +7,6 @@
 
 
 class DataBus {
-public:
-    bool datavalidity();
 
 };
 
