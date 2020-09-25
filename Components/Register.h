@@ -9,6 +9,8 @@
 class Register {
 private:
     Byte value;
+public:
+
 
 };
 
