@@ -3,7 +3,6 @@
 //
 
 #include "AddressBus.h"
-#include<iostream>
 
 void AddressBus::Write(Word addr) {
     this->addr=addr;

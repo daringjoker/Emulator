@@ -3,23 +3,20 @@
 //
 
 #include "Memory.h"
-#include "AddressBus.h"
-#include "DataBus.h"
-
-DataBus db;
-AddressBus ab;
-Word temp1,temp2;
-Memory::Memory(AddressBus, DataBus) {
-mem = new char [256];
-}
 
 void Memory::ReadMemory() {
- temp1= ab.Read();
-db.write(mem[temp1]);
+ Word temp1= addrbus.Read();
+ databus.write(mem[temp1]);
 }
 
 void Memory::WriteMemory() {
 
-   mem[ab.Read()]=db.read();
+   mem[addrbus.Read()]=databus.read();
 
+}
+
+Memory::Memory(AddressBus &addrbus, DataBus &databus):
+addrbus{addrbus},databus{databus}
+{
+ mem=new Byte[0xffff+10];
 }

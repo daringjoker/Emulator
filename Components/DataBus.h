@@ -12,8 +12,6 @@ private:
 public:
     void write(Byte data);
     Byte read();
-
-
 };
 
 
