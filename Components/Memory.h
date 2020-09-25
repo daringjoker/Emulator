@@ -11,11 +11,12 @@
 
 class Memory {
 private:
+  char * mem;
 
 public:
     Memory(AddressBus,DataBus);
-void ReadMemory();
-void WriteMemory();
+    void ReadMemory();
+    void WriteMemory();
 
 };
 
