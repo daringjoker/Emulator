@@ -7,8 +7,6 @@
 #include "AddressBus.h"
 #include "DataBus.h"
 #include "constants.h"
-
-
 class Memory {
 private:
   Byte * mem;
