@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Assembler/Assembler.h"
+#include "Assembler.h"
 using namespace std;
 int main(int argc,char ** argv) {
     Assembler a;

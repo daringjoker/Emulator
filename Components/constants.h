@@ -5,5 +5,5 @@
 #ifndef EMULATOR_CONSTANTS_H
 #define EMULATOR_CONSTANTS_H
 typedef unsigned char Byte;
-typedef unsigned short int Word;
+typedef unsigned short Word;
 #endif //EMULATOR_CONSTANTS_H

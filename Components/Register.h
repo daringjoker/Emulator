@@ -10,7 +10,9 @@ class Register {
 private:
     Byte value;
 public:
-
+    Register()=default;
+    Word get();
+    void set(Word value);
 
 };
 
