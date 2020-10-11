@@ -1,6 +1,7 @@
 #ifndef EMULATOR_FLAGREGISTER_H
 #define EMULATOR_FLAGREGISTER_H
 #include "constants.h"
+#include "Register.h"
 typedef struct{
     unsigned int signFlag:1;
     unsigned int zeroFlag:1;
@@ -11,29 +12,24 @@ typedef struct{
     unsigned int nc3:1;
     unsigned int carryFlag:1;
 } FlagBits;
-typedef union {
-    Byte value;
-    FlagBits bits;
-} FlagContent;
-class FlagRegister {
+class FlagRegister:Register{
 private:
-    FlagContent content;
+    FlagBits& asStruct();
 public:
-    void setContent(Byte value);
-    void getContent();
-    bool getSignFlag();
+    F
+    bool isSet_SignFlag();
     void setSignFlag();
     void resetSignFlag();
-    bool getZeroFlag();
+    bool isSet_ZeroFlag();
     void setZeroFlag();
     void resetZeroFlag();
-    bool getAuxCarryFlag();
+    bool isSet_AuxCarryFlag();
     void setAuxCarryFlag();
     void resetAuxCarryFlag();
-    bool getPairityFlag();
+    bool isSet_PairityFlag();
     void setPairityFlag();
     void resetPairityFlag();
-    bool getCarryFlag();
+    bool isSet_CarryFlag();
     void setCarryFlag();
     void resetCarryFlag();
 };
