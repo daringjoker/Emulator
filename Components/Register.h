@@ -4,17 +4,20 @@
 
 #ifndef EMULATOR_REGISTERS_H
 #define EMULATOR_REGISTERS_H
+#include<string>
 #include "constants.h"
 
 class Register {
-private:
+protected:
     Byte value;
+    std::string  name;
 public:
-    Register()=default;
-    Word get();
-    void set(Word value);
+ explicit Register(std::string);
+    Byte get();
+    void set(Byte value);
 
 };
+
 
 
 #endif //EMULATOR_REGISTERS_H
