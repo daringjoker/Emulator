@@ -12,7 +12,7 @@ typedef struct{
     unsigned int nc3:1;
     unsigned int carryFlag:1;
 } FlagBits;
-class FlagRegister:Register{
+class FlagRegister:public Register{
 private:
     FlagBits& asStruct();
 public:
