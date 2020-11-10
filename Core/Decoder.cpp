@@ -43,4 +43,5 @@ Decoded_Instr emulator::Decode(Byte opcode) {
 }
 
 
+
 #endif //EMULATOR_DECODER_CPP

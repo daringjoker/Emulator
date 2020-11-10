@@ -130,5 +130,6 @@ private:
     void MOV(Decoded_Instr instr);
     void ADI(Decoded_Instr instr);
 
+    Register & getRegByName(string regname);
 };
 #endif //EMULATOR_EMULATOR_H

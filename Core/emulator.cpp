@@ -32,3 +32,15 @@ void emulator::reset() {
     this->HL.set(0);
     this->SP.set(0xffff);
 }
+
+Register & emulator::getRegByName(string regname) {
+    if (regname==string("A")) return A;
+    else if (regname==string("B")) return B;
+    else if (regname==string("C")) return C;
+    else if (regname==string("D")) return D;
+    else if (regname==string("E")) return E;
+    else if (regname==string("H")) return H;
+    else if (regname==string("L")) return L;
+    else
+        record_error("Invalid register found ",0,Errorclass::Warning);
+}
