@@ -13,6 +13,9 @@ protected:
     std::string  name;
 public:
  explicit Register(std::string);
+
+    Register();
+
     Byte get();
     void set(Byte value);
 

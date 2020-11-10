@@ -10,6 +10,7 @@ class DataBus {
 private:
     Byte data;
 public:
+    DataBus()=default;
     void write(Byte data);
     Byte read();
 };

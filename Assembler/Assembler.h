@@ -23,7 +23,7 @@ public:
     vector<Byte> assembled;
     set<string>  unknownLabel;
     map<string,Word> label2addr;
-    explicit Assembler(Word baseaddr=0x8000);
+    explicit Assembler(Word baseaddr=0x4000);
     void Assemble_file(string filename);
     void Assemble_text(string text);
 private:

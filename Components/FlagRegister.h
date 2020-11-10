@@ -16,6 +16,7 @@ class FlagRegister:public Register{
 private:
     FlagBits& asStruct();
 public:
+    FlagRegister();
     bool isSet_SignFlag();
     void setSignFlag();
     void resetSignFlag();

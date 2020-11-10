@@ -7,6 +7,7 @@
 
 #include<map>
 #include<string>
+#include <algorithm>
 #include "../Components/constants.h"
 
 using namespace std;

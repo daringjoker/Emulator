@@ -9,6 +9,7 @@ class AddressBus {
 private:
     Word addr;
 public:
+    AddressBus()=default;
     void Write(Word addr);
     Word Read();
 };

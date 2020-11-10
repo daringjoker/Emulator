@@ -4,22 +4,16 @@
 
 #ifndef EMULATOR_EMULATOR_H
 #define EMULATOR_EMULATOR_H
+#include <vector>
 #include "../Components/AllComponents.h"
+#include "DataTypes.h"
 using namespace std;
-
-
-typedef struct Decoded_Instr {
-    Word startAddress;
-    Byte size=0;
-    string stencil;
-    Byte dataByte=0;
-    Word dataWord=0;
-    Byte rawinstr[3];
-} Decoded_Instr;
 
 class emulator {
 public:
-    Register A,B,C,D,E,H,L,PCl,PCh,SPl,SPh;
+    Register A=Register("A"),B=Register("B"),C=Register("C"),\
+    D=Register("D"),E=Register("E"),H=Register("H"),L=Register("L")\
+    ,PCl=Register("PC_low"),PCh=Register("PC_high"),SPl=Register("SP_low"),SPh=Register("SP_high");
     FlagRegister flags;
     RegisterPair PSW=RegisterPair(A,flags);
     RegisterPair BC=RegisterPair(B,C);
@@ -29,25 +23,30 @@ public:
     RegisterPair PC=RegisterPair(PCh,PCl);
     DataBus Dbus;
     AddressBus Abus;
-    Memory Ram;
-    Ports ports;
+    Memory Ram=Memory(Abus,Dbus);
+    Ports ports=Ports(Abus,Dbus);
     Word start_of_code=0x4000;
+    vector<emu_error> Error_list;
 public://methods
     //public methods for client use
-    void load_binary();
+    emulator()=default;
+    void load_binary(vector<Byte> binary);
     void single_step();
     void run();
-    void Reset();
+    void reset();
 private:
-    bool fatal_error;
+    bool fatal_error=false;
+    bool halted=false;
 private:
     //Errors during execution
-    void record_error(string errorstring,Word address);
+    void record_error(string errorstring,Word address,Errorclass errclass);
     //fetching api
     Byte fetchByte();
     Word fetchWord();
     //for decoding the instructions
     Decoded_Instr Decode(Byte Opcode);
+    //Executing instructions
+    void Execute(Decoded_Instr instr);
 
 };
 #endif //EMULATOR_EMULATOR_H

@@ -19,7 +19,7 @@ Decoded_Instr emulator::Decode(Byte opcode) {
     {
         char asString[5];
         sprintf(asString,"0x%02X",opcode);
-        record_error(string("Invalid instruction opcode :")+string(asString),PC.get()-1);
+        record_error(string("Invalid instruction opcode :")+string(asString),PC.get()-1,Errorclass::Fatal_error);
         fatal_error=true;
         return {};
     }

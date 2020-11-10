@@ -16,3 +16,4 @@ Register::Register(std::string regname) {
     name=regname;
 
 }
+

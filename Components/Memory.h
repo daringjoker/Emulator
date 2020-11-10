@@ -9,11 +9,12 @@
 #include "constants.h"
 class Memory {
 private:
-  Byte * mem;
   AddressBus& addrbus;
-  DataBus& databus;
+    DataBus& databus;
 
 public:
+
+    Byte * mem;
     Memory(AddressBus& addrbus,DataBus& databus);
     void ReadMemory();
     void WriteMemory();

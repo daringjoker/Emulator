@@ -66,3 +66,6 @@ FlagBits& FlagRegister::asStruct() {
     auto* data=(FlagBits*)&value;
     return *data;
 }
+
+FlagRegister::FlagRegister():Register("Flag") {
+}
