@@ -9,7 +9,7 @@
 #include <regex>
 #include "../InstructionSet/Instructions.h"
 using namespace std;
-enum sTokenType {instr,hex_imm,dec_imm,dec_label,ref_label,reg,tbd,comma,lineend};
+enum sTokenType {instr,hex_imm,dec_imm,bin_imm,oct_imm,ascii_imm,dec_label,ref_label,reg,tbd,comma,lineend};
 typedef struct{
 string tvalue;
 sTokenType type;

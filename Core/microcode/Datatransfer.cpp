@@ -35,7 +35,7 @@ void emulator::MOV(Decoded_Instr instr) {
 
 
 void emulator::MVI(Decoded_Instr instr) {
-    //MOV reg,reg
+  //MVI reg,imm
     char mnemonic[50],arg1[20],arg2[20];
     sscanf(instr.stencil.c_str(),"%s %s %s",mnemonic,arg1, arg2);
     arg1[1]=0;

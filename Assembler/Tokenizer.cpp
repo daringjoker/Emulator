@@ -29,6 +29,12 @@ vector<sToken> Tokenizer::tokenize_line(string Line) {
                    tokens->push_back(sToken({w, sTokenType::dec_imm}));
                else if(regex_match(w,regex("^[0-9a-fA-F]+[hH]$")))
                    tokens->push_back(sToken({w, sTokenType::hex_imm}));
+               else if(regex_match(w,regex("^[0-1]+[bB]$")))
+                   tokens->push_back(sToken({to_string(stoi(w,0,2)), sTokenType::dec_imm}));
+               else if(regex_match(w,regex("^[0-7]+[oO]$")))
+                   tokens->push_back(sToken({to_string(stoi(w,0,8)), sTokenType::dec_imm}));
+               else if(regex_match(w,regex("'.'")))
+                   tokens->push_back(sToken({to_string((int)w[1]), sTokenType::dec_imm}));
                else
                    tokens->push_back(sToken({w, sTokenType::tbd}));
             }

@@ -97,6 +97,14 @@ void Assembler::get_opcode() {
     for (auto& instr:parsed_data)
     {
         line++;
+        if(regex_match(instr.instruct,regex("^RST$",std::regex_constants::icase)))
+        {
+            char ins[10];
+            sprintf(ins,"RST %s",instr.argument1.c_str());
+            instr.instruct=string(ins);
+            instr.num_token--;
+            instr.num_args--;
+        }
         if(instr.num_token>0) {
             string pattern = instr.instruct;
             if (instr.num_args > 0) {
