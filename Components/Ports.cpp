@@ -8,6 +8,9 @@ Ports::Ports(AddressBus &addrbus, DataBus &databus):
 addrbus {addrbus},databus{databus}
 {
     place = new Byte[0xff+10];
+    for (int i = 0; i < 0xff + 10; ++i) {
+        place[i]=0;
+    }
 
 }
 

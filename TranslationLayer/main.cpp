@@ -12,6 +12,8 @@ void printDebugStatus();
 
 void printRegisters();
 
+void printMemoryDump(string command);
+
 Assembler assembler;
 Emulator emulator;
 Disassembler disassembler;
@@ -84,6 +86,14 @@ void execute(string& command) {
         case 'q':
             config::running=false;
             exit(0);
+        case 'm':
+            if(command=="m") {
+                printMemoryDump("m 0000 65535");
+            }
+            else
+                printMemoryDump(command);
+            break;
+
         case 'c':
             if(command.size()>1&&tolower(command[1])=='l')
             {
@@ -155,6 +165,76 @@ void execute(string& command) {
     }
 }
 
+void printMemoryDump(string command) {
+    unsigned int baseaddr;
+    int count;
+    char cmd[1024]={0};
+    char base[1024]={0};
+    sscanf(command.c_str(),"%s %x %d",cmd,&baseaddr,&count);
+//    cout<<base<<endl;
+//    baseaddr=stoi(string(base), 0, 16);
+    baseaddr&=0xfff0;
+    unsigned int end=baseaddr+count;
+    unsigned int index=baseaddr;
+    printf("\n%*s\n",83,"MEMORY DUMP");
+    printf("%s\n",string(158,'-').c_str());
+    printf("| BASE |%27s%22s|%38s%27s|%21s%12s|\n","HEXDUMP","","DECIMAL VIEW","","ASCII VIEW","");
+    printf("|      |%49s|%65s|%33s|\n"," 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F "," 000 001 002 003 004 005 006 007 008 009 00A 00B 00C 00D 00E 00F ","");
+    printf("%s\n",string(158,'-').c_str());
+    bool skippable=count>400;
+    bool skip=false;
+    while(index<=end) {
+        bool nonZerofound = false;
+        if(!skip)
+            printf("| %04X |", index);
+        for (int i = 0; i < 16; ++i) {
+            if (emulator.Ram.mem[index + i] != 0) {
+                nonZerofound = true;
+            }
+            if (!skip)
+                printf(" %02X", emulator.Ram.mem[index + i]);
+        }
+        if (!skip)
+            printf(" |");
+        for (int i = 0; i < 16; ++i) {
+            if (!skip)
+                printf(" %03d", emulator.Ram.mem[index + i]);
+        }
+        if (!skip)
+            printf(" |");
+        for (int i = 0; i < 16; ++i) {
+            char c = emulator.Ram.mem[index + i];
+            char d = isprint(c) ? c : '.';
+            if (!skip)
+                printf(" %c", d);
+        }
+        if (!skip)
+            printf(" |\n");
+        if(skippable) {
+            if (nonZerofound) {
+                if (skip) {
+                    skip = false;
+                    index &= 0xfff0;
+                } else {
+                    index += 16;
+                }
+            } else {
+                if (!skip)
+                    printf("| .... |%49s|%65s|%33s|\n", "", "", "");
+
+                skip = true;
+                index += 16;
+            }
+        }
+        else
+            index+=16;
+
+    }
+    printf("%s\n",string(158,'-').c_str());
+
+
+}
+
 void printRegisters() {
     Byte a=emulator.A.get();
     Byte b=emulator.B.get();
@@ -163,20 +243,34 @@ void printRegisters() {
     Byte e=emulator.E.get();
     Byte h=emulator.H.get();
     Byte l=emulator.L.get();
+    Word bc=emulator.BC.get();
+    Word de=emulator.DE.get();
+    Word hl=emulator.HL.get();
     Word sp=emulator.SP.get();
     Word pc=emulator.PC.get();
+    const char* zf=(emulator.flags.isSet_ZeroFlag()?"HIGH":"LOW");
+    const char* cf=(emulator.flags.isSet_CarryFlag()?"HIGH":"LOW");
+    const char* sf=(emulator.flags.isSet_SignFlag()?"HIGH":"LOW");
+    const char* af=(emulator.flags.isSet_AuxCarryFlag()?"HIGH":"LOW");
+    const char* pf=(emulator.flags.isSet_PairityFlag()?"HIGH":"LOW");
     printf("\t REGISTERS:-\n");
-    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","A",a,a,a);
-    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","B",b,b,b);
-    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","C",c,c,c);
-    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","D",d,d,d);
-    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","E",e,e,e);
+    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | ZeroFlag      : %s\n","A",a,a,a,zf);
+    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | CarryFlag     : %s\n","B",b,b,b,cf);
+    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | SignFlag      : %s\n","C",c,c,c,sf);
+    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | AuxCarryFlag  : %s\n","D",d,d,d,af);
+    printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | ParityFlag    : %s\n","E",e,e,e,pf);
     printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","H",h,h,h);
     printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n","L",l,l,l);
+    printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n","BC",bc,bc,emulator.Ram.mem[bc]);
+    printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n","DE",de,de,emulator.Ram.mem[de]);
+    printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n","HL",hl,hl,emulator.Ram.mem[hl]);
+    printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n","SP",sp,sp,emulator.Ram.mem[sp]);
+    printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n","PC",pc,pc,emulator.Ram.mem[pc]);
 }
 
 void printDebugStatus() {
-
+    DisassembleFile();
+    printRegisters();
 }
 
 void DisassembleFile() {

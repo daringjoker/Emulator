@@ -19,4 +19,7 @@ Memory::Memory(AddressBus &addrbus, DataBus &databus):
 addrbus{addrbus},databus{databus}
 {
  mem=new Byte[0xffff+10];
+    for (int i = 0; i < 0xffff + 10; ++i) {
+        mem[i]=0;
+    }
 }
