@@ -34,10 +34,12 @@ public:
     Word Baseaddr=0x4000;
     FileHeader header;
     map<string,Word> labelmap;
+    explicit Execfile()=default;
     explicit Execfile(vector<Byte>&BinaryCode,Word Baseaddr=0x4000);
     explicit Execfile(string filename);
     explicit Execfile(char* Memory,Word baseaddr,Word endaddr);
     void Dumpfile(string filename);
+    static bool isExecutable(string filename);
 };
 
 

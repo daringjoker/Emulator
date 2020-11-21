@@ -13,12 +13,14 @@ addrbus {addrbus},databus{databus}
 
 void Ports::ReadPort() {
     Word temp= addrbus.Read();
-    databus.write(place[temp]);
-
+    Byte portaddr=temp&0xff;
+    databus.write(place[portaddr]);
 
 }
 
 void Ports::WritePort() {
-    place[addrbus.Read()]=databus.read();
+    Word temp= addrbus.Read();
+    Byte portaddr=temp&0xff;
+    place[portaddr]=databus.read();
 
 }

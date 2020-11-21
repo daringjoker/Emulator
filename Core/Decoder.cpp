@@ -4,13 +4,13 @@
 
 #ifndef EMULATOR_DECODER_CPP
 #define EMULATOR_DECODER_CPP
-#include "emulator.h"
+#include "Emulator.h"
 #include "../InstructionSet/Instructions.h"
 #include <string>
 #include <vector>
 #include <stdexcept>
 using namespace std;
-Decoded_Instr emulator::Decode(Byte opcode) {
+Decoded_Instr Emulator::Decode(Byte opcode) {
     Instruction instr;
     try{
          instr = opcode2Instr.at(opcode);
@@ -41,6 +41,7 @@ Decoded_Instr emulator::Decode(Byte opcode) {
     }
     return decoded;
 }
+
 
 
 

@@ -2,8 +2,8 @@
 // Created by DaringJoker on 11/9/2020.
 //
 
-#include "emulator.h"
-Byte emulator::fetchByte() {
+#include "Emulator.h"
+Byte Emulator::fetchByte() {
     Word address=this->PC.get();
     this->Abus.Write(address);
     this->Ram.ReadMemory();
@@ -12,7 +12,7 @@ Byte emulator::fetchByte() {
     return value;
 }
 
-Word emulator::fetchWord() {
+Word Emulator::fetchWord() {
   Word lvalue=fetchByte();
   Word hvalue=fetchByte();
   return ((hvalue<<8)|lvalue);

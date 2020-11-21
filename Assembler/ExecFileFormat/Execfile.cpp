@@ -10,6 +10,26 @@ Execfile::Execfile(vector<Byte> &BinaryCode, Word Baseaddr) {
 }
 
 Execfile::Execfile(string filename) {
+    ifstream infile (filename, ios::in | ios::binary);
+    infile.read ((char*)&header,sizeof(header));
+    int codesize=header.LabelDirectoryAddress-header.StartOfcode;
+    char* codebuffer=new char[codesize+10];
+    infile.read(codebuffer,codesize);
+    for(int i=0;i<codesize;++i)
+    {
+        Binarycode.push_back(codebuffer[i]);
+    }
+    if(!header.Stripped){
+        for(int i=0;i<header.NoOfLabels;++i)
+        {
+            auto *ldh =new LabelDirectoryHeader;
+            infile.read((char*)ldh,sizeof(LabelDirectoryHeader));
+            char *str=new char[ldh->length+10];
+            infile.read(str,ldh->length);
+            str[ldh->length]=0;
+            labelmap[string(str)]=ldh->address;
+        }
+    }
 
 }
 
@@ -56,4 +76,14 @@ void Execfile::Dumpfile(string filename) {
         outfile.write(Label_Buffer,bufferPointer);
     }
     outfile.close();
+}
+
+bool Execfile::isExecutable(string filename) {
+    ifstream myFile (filename, ios::in | ios::binary);
+    char signature[5]={0};
+    myFile.read (signature, 5);
+    if(signature[0]=='P'&&signature[1]=='R'&&signature[2]=='S'&&signature[3]=='8'&&signature[4]=='5')
+    return true;
+    else
+    return false;
 }

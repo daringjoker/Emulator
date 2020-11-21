@@ -16,8 +16,8 @@ public:
 
     Register();
 
-    Byte get();
-    void set(Byte value);
+    virtual Byte get();
+    virtual  void set(Byte value);
 
 };
 

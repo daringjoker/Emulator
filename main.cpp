@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Assembler/Assembler.h"
-#include "Core/emulator.h"
+#include "Core/Emulator.h"
 using namespace std;
 int main() {
     Assembler a;

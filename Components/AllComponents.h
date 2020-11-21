@@ -14,4 +14,5 @@
 #include "Ports.h"
 #include "Register.h"
 #include "RegisterPair.h"
+#include "MemoryPointerRegiser.h"
 #endif //EMULATOR_ALLCOMPONENTS_H
