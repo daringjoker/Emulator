@@ -32,7 +32,7 @@ void Emulator::DCR(Decoded_Instr instr)
     sscanf(instr.stencil.c_str(),"%s %s",mnemonic,arg1);
     Byte temp=getRegByName(arg1).get();
     int result=temp-1;
-    A.set(result&0xff);
+    getRegByName(arg1).set(result&0xff);
     AdjustFlags(temp+1, 1, result);
 }
 
@@ -42,7 +42,7 @@ void Emulator::INR(Decoded_Instr instr)
     sscanf(instr.stencil.c_str(),"%s %s",mnemonic,arg1);
     Byte temp=getRegByName(arg1).get();
     int result=temp+1;
-    A.set(result&0xff);
+    getRegByName(arg1).set(result&0xff);
     AdjustFlags(temp-1, 1, result);
 }
 
@@ -130,7 +130,7 @@ void Emulator::INX(Decoded_Instr instr)
     sscanf(instr.stencil.c_str(),"%s %s",mnemonic,arg1);
     Word temp=getRegPairByName(arg1).get();
     temp=temp+1;
-    getRegByName(arg1).set(temp);
+    getRegPairByName(arg1).set(temp);
 }
 void Emulator::DCX(Decoded_Instr instr)
 {
@@ -138,7 +138,7 @@ void Emulator::DCX(Decoded_Instr instr)
     sscanf(instr.stencil.c_str(),"%s %s",mnemonic,arg1);
     Word temp=getRegPairByName(arg1).get();
     temp=temp-1;
-    getRegByName(arg1).set(temp);
+    getRegPairByName(arg1).set(temp);
 }
 void Emulator::DAD(Decoded_Instr instr)
 {

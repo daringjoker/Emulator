@@ -74,7 +74,7 @@ void Emulator::RET(Decoded_Instr instr)
             Byte pcl=Dbus.read();
             PCl.set(pcl);
 
-            Abus.Write(sp-1);
+            Abus.Write(sp+1);
             Ram.ReadMemory();
             Byte pch=Dbus.read();
             PCh.set(pch);

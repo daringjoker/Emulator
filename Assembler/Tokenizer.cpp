@@ -15,6 +15,7 @@ vector<sToken> Tokenizer::tokenize_line(string Line) {
         Line=strip_comment(Line);
         if (Line.length()>0){
             Line=std::regex_replace(Line, std::regex(","), std::string(" , "));
+            Line=std::regex_replace(Line, std::regex(":"), std::string(": "));
             vector<string>stoken=explode(Line);
             for(auto w : stoken){
                if (regex_match(w,regex("^[_A-Za-z][0-9_a-zA-Z]*?:$")))

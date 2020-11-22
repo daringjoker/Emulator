@@ -9,10 +9,10 @@
 #include "constants.h"
 class Ports {
 private:
-    Byte * place;
     AddressBus& addrbus;
     DataBus& databus;
 public:
+    Byte * place;
     Ports(AddressBus& addrbus,DataBus& databus);
     void ReadPort();
     void WritePort();

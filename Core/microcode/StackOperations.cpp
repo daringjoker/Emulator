@@ -36,7 +36,7 @@ void Emulator::POP(Decoded_Instr instr)
     Ram.ReadMemory();
     Byte RPl=Dbus.read();
 
-    Abus.Write(sp-1);
+    Abus.Write(sp+1);
     Ram.ReadMemory();
     Byte RPh=Dbus.read();
 

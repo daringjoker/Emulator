@@ -13,6 +13,7 @@ void Emulator::load_binary(vector<Byte> &binary) {
 }
 
 void Emulator::single_step() {
+    if(halted)return;
     Byte opcode = fetchByte();
     Decoded_Instr instr = Decode(opcode);
     Execute(instr);
