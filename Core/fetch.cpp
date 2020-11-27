@@ -3,17 +3,18 @@
 //
 
 #include "Emulator.h"
+
 Byte Emulator::fetchByte() {
-    Word address=this->PC.get();
+    Word address = this->PC.get();
     this->Abus.Write(address);
     this->Ram.ReadMemory();
-    Byte value=this->Dbus.read();
-    this->PC.set(address+1);
+    Byte value = this->Dbus.read();
+    this->PC.set(address + 1);
     return value;
 }
 
 Word Emulator::fetchWord() {
-  Word lvalue=fetchByte();
-  Word hvalue=fetchByte();
-  return ((hvalue<<8)|lvalue);
+    Word lvalue = fetchByte();
+    Word hvalue = fetchByte();
+    return ((hvalue << 8) | lvalue);
 }

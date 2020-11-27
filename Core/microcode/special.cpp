@@ -3,10 +3,9 @@
 //
 #include "../Emulator.h"
 
-void Emulator::NOP(Decoded_Instr instr)
-{
+void Emulator::NOP(Decoded_Instr instr) {
 }
-void Emulator::HLT(Decoded_Instr instr)
-{
-    this->halted=true;
+
+void Emulator::HLT(Decoded_Instr instr) {
+    this->halted = true;
 }

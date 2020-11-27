@@ -4,13 +4,17 @@
 
 #ifndef EMULATOR_ADDRESSBUS_H
 #define EMULATOR_ADDRESSBUS_H
+
 #include "constants.h"
+
 class AddressBus {
 private:
     Word addr;
 public:
-    AddressBus()=default;
+    AddressBus() = default;
+
     void Write(Word addr);
+
     Word Read();
 };
 

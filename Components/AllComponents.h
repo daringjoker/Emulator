@@ -4,6 +4,7 @@
 
 #ifndef EMULATOR_ALLCOMPONENTS_H
 #define EMULATOR_ALLCOMPONENTS_H
+
 #include "AddressBus.h"
 #include "constants.h"
 #include "DataBus.h"
@@ -15,4 +16,5 @@
 #include "Register.h"
 #include "RegisterPair.h"
 #include "MemoryPointerRegiser.h"
+
 #endif //EMULATOR_ALLCOMPONENTS_H

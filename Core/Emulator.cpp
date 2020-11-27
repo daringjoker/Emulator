@@ -11,16 +11,45 @@ void Emulator::load_binary(vector<Byte> &binary) {
         Ram.mem[index++] = opcode;
     }
 }
+vector<Byte> Emulator::binary_from_pc() {
+    Word index = this->PC.get();
+    vector<Byte> code;
+    int consec_nops = 0;
+    while(true)
+    {
+        Byte opcode=this->Ram.mem[index++];
+        code.push_back(opcode);
+        if(opcode==0) {
+            consec_nops++;
+        }
+        else
+        {
+            consec_nops=0;
+        }
+        if(consec_nops>=12) break;
+    }
+    return code;
+}
+vector<Byte> Emulator::getBinaryLine(Word lineaddr) {
+    Word index = lineaddr;
+    vector<Byte> code;
+   for(int i;i<3;i++){
+        Byte opcode=this->Ram.mem[index++];
+        code.push_back(opcode);
+    }
+    return code;
+}
+
 
 void Emulator::single_step() {
-    if(halted)return;
+    if (halted)return;
     Byte opcode = fetchByte();
     Decoded_Instr instr = Decode(opcode);
     Execute(instr);
 }
 
 void Emulator::run() {
-    if(!halted) {
+    if (!halted) {
         do {
             single_step();
             brkhit = breakpoints.count(this->PC.get()) != 0;
@@ -36,8 +65,8 @@ void Emulator::reset() {
     this->DE.set(0);
     this->HL.set(0);
     this->SP.set(0xffff);
-    this->halted=false;
-    this->brkhit=false;
+    this->halted = false;
+    this->brkhit = false;
 }
 
 Register &Emulator::getRegByName(string regname) {
@@ -52,7 +81,8 @@ Register &Emulator::getRegByName(string regname) {
     else
         record_error("Invalid register found ", 0, Errorclass::Warning);
 }
-RegisterPair& Emulator::getRegPairByName(const string& regname) {
+
+RegisterPair &Emulator::getRegPairByName(const string &regname) {
     if (regname == string("PSW")) return PSW;
     else if (regname == string("B")) return BC;
     else if (regname == string("D")) return DE;

@@ -4,17 +4,22 @@
 
 #ifndef EMULATOR_PORTS_H
 #define EMULATOR_PORTS_H
+
 #include "AddressBus.h"
 #include "DataBus.h"
 #include "constants.h"
+
 class Ports {
 private:
-    AddressBus& addrbus;
-    DataBus& databus;
+    AddressBus &addrbus;
+    DataBus &databus;
 public:
-    Byte * place;
-    Ports(AddressBus& addrbus,DataBus& databus);
+    Byte *place;
+
+    Ports(AddressBus &addrbus, DataBus &databus);
+
     void ReadPort();
+
     void WritePort();
 };
 

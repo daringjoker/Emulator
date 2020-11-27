@@ -5,7 +5,7 @@
 #include "AddressBus.h"
 
 void AddressBus::Write(Word addr) {
-    this->addr=addr;
+    this->addr = addr;
 }
 
 Word AddressBus::Read() {

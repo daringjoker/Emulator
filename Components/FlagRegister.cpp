@@ -2,70 +2,70 @@
 #include "FlagRegister.h"
 
 bool FlagRegister::isSet_SignFlag() {
-    return asStruct().signFlag==1U;
+    return asStruct().signFlag == 1U;
 }
 
 void FlagRegister::setSignFlag() {
-    asStruct().signFlag=1u;
+    asStruct().signFlag = 1u;
 }
 
 void FlagRegister::resetSignFlag() {
-    asStruct().signFlag=0U;
+    asStruct().signFlag = 0U;
 }
 
 bool FlagRegister::isSet_ZeroFlag() {
-    return asStruct().zeroFlag==1u;
+    return asStruct().zeroFlag == 1u;
 }
 
 void FlagRegister::setZeroFlag() {
-    asStruct().zeroFlag=1u;
+    asStruct().zeroFlag = 1u;
 }
 
 void FlagRegister::resetZeroFlag() {
-     asStruct().zeroFlag=0u;
+    asStruct().zeroFlag = 0u;
 }
 
 bool FlagRegister::isSet_AuxCarryFlag() {
-    return asStruct().auxCarryFlag==1u;
+    return asStruct().auxCarryFlag == 1u;
 }
 
 void FlagRegister::setAuxCarryFlag() {
-    asStruct().auxCarryFlag=1u;
+    asStruct().auxCarryFlag = 1u;
 }
 
 void FlagRegister::resetAuxCarryFlag() {
-    asStruct().auxCarryFlag=0u;
+    asStruct().auxCarryFlag = 0u;
 }
 
 bool FlagRegister::isSet_PairityFlag() {
-    return asStruct().pairityFlag==1u;
+    return asStruct().pairityFlag == 1u;
 }
 
 void FlagRegister::setPairityFlag() {
-    asStruct().pairityFlag=1u;
+    asStruct().pairityFlag = 1u;
 }
 
 void FlagRegister::resetPairityFlag() {
-    asStruct().pairityFlag=0u;
+    asStruct().pairityFlag = 0u;
 }
 
 bool FlagRegister::isSet_CarryFlag() {
-    return asStruct().carryFlag==1u;
+    return asStruct().carryFlag == 1u;
 }
 
 void FlagRegister::setCarryFlag() {
-    asStruct().carryFlag=1u;
+    asStruct().carryFlag = 1u;
 }
 
 void FlagRegister::resetCarryFlag() {
-    asStruct().carryFlag=0u;
+    asStruct().carryFlag = 0u;
 
 }
 
-FlagBits& FlagRegister::asStruct() {
-    auto* data=(FlagBits*)&value;
+FlagBits &FlagRegister::asStruct() {
+    auto *data = (FlagBits *) &value;
     return *data;
 }
 
-FlagRegister::FlagRegister():Register("Flag") {
+FlagRegister::FlagRegister() : Register("Flag") {
 }

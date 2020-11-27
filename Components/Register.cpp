@@ -4,16 +4,16 @@
 
 #include "Register.h"
 
-Byte Register::get( ) {
+Byte Register::get() {
     return this->value;
 }
 
 void Register::set(Byte value) {
-this->value=value;
+    this->value = value;
 }
 
 Register::Register(std::string regname) {
-    name=regname;
+    name = regname;
 
 }
 

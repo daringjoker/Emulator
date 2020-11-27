@@ -4,6 +4,7 @@
 
 #ifndef EMULATOR_PARSER_H
 #define EMULATOR_PARSER_H
+
 #include <string>
 #include <vector>
 #include <fstream>
@@ -12,11 +13,11 @@
 
 using namespace std;
 
-typedef struct{
-    bool to_be_labelled=false;
+typedef struct {
+    bool to_be_labelled = false;
     string instruct;
     string labelname;
-    int num_args=0;
+    int num_args = 0;
     string argument1;
     string argument2;
     sTokenType arg1_type;
@@ -25,10 +26,10 @@ typedef struct{
     Byte opcode;
     Byte immediate_byte;
     Word immediate_word;
-    int num_token=0;
-}Instr_line;
+    int num_token = 0;
+} Instr_line;
 
-typedef struct{
+typedef struct {
     string msg;
     int line_no;
     string line;
@@ -42,12 +43,18 @@ typedef struct{
 class Parser {
 public:
     vector<Error> errorlist;
-    Parser()=default;
+
+    Parser() = default;
+
     string label;
-    bool pending_label=false;
+    bool pending_label = false;
+
     vector<Instr_line> parse_file(string filename);
+
     vector<Instr_line> parse_text(string text);
+
     Instr_line parse_line(string line, int line_no);
+
     void register_error(string msg, string line, int line_no);
 };
 

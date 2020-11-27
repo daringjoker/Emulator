@@ -4,15 +4,19 @@
 
 #ifndef EMULATOR_REGISTERPAIR_H
 #define EMULATOR_REGISTERPAIR_H
+
 #include "Register.h"
 #include "constants.h"
+
 class RegisterPair {
 protected:
-    Register& high;
-    Register& low;
+    Register &high;
+    Register &low;
 public:
-    RegisterPair(Register& reg1,Register& reg2);
+    RegisterPair(Register &reg1, Register &reg2);
+
     void set(Word value);
+
     Word get();
 };
 

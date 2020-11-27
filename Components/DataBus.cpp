@@ -4,7 +4,7 @@
 #include "DataBus.h"
 
 void DataBus::write(Byte data) {
-    this->data=data;
+    this->data = data;
 
 }
 
