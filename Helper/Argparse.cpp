@@ -84,6 +84,7 @@ void Argparse::printHelp() {
             else sprintf(options, "[-%s / --%s]", arg.shortname.c_str(), arg.longname.c_str());
             printf("\t%-30s%s\n", options, arg.Help.c_str());
         }
+        printf("\t%-30s%s\n", "[-h / --help]", "Display this Help and Exit.");
     }
     if (!Footer.empty())cout << Footer << endl;
     exit(0);
@@ -96,6 +97,7 @@ void Argparse::printUsage() {
     cout << "Usage: " << argv[0] << " ";
     for (auto &arg: pargs)cout << arg.shortname << "/" << arg.longname << " ";
     for (auto &arg: kwargs)cout << "[-" << arg.shortname << "/--" << arg.longname << "] ";
+    cout << "[ -h/--help ]";
     cout << endl;
     if (!Footer.empty()) cout << Footer << endl;
     exit(0);

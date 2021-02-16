@@ -70,7 +70,7 @@ void Emulator::CMP(Decoded_Instr instr) {
 void Emulator::CPI(Decoded_Instr instr) {
     Byte a = A.get();
     Byte temp = instr.dataByte;
-    int result = a | temp;
+    int result = a -temp;
     AdjustFlags(a, temp, result);
 }
 

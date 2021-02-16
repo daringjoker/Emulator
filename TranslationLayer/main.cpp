@@ -5,6 +5,12 @@
 #include "../Assembler/ExecFileFormat/Execfile.h"
 #include "../Helper/Screen.h"
 
+void jsonMemory();
+
+void jsonPorts();
+
+void jsonRegisters();
+
 void DisassembleFile();
 
 void execute(string &command);
@@ -43,11 +49,13 @@ int main(int argc, char **argv) {
     parser.AddArgument("f", "filename", Argparse::Path, "Path of the file that is to be loaded", true, true);
     parser.AddArgument("d", "disassemble", Argparse::Boolean, "Only print the disassembly of the file");
     parser.AddArgument("p", "prompt", Argparse::String, "Set the prompt to the given string");
+    parser.AddArgument("j", "json", Argparse::Boolean, "Dump all outputs as json");
     parser.ParseArgument(argc, argv);
     config::disassemble = parser.getArg("-d").found;
     config::filename = parser.getArg("f").Value;
     config::prompt = parser.getArg("-p").found ? parser.getArg("-p").Value : "PRS>> ";
     config::isValidExecutable = Execfile::isExecutable(config::filename);
+    config::jsonOutput = parser.getArg("-j").found;
     emulator.reset();
     if (config::isValidExecutable) {
         execfile = Execfile(config::filename);
@@ -99,7 +107,10 @@ void execute(string &command) {
             exit(0);
         case 'm':
             if (command == "m") {
-                printMemoryDump("m 0000 65535");
+                if (config::jsonOutput)
+                    jsonMemory();
+                else
+                    printMemoryDump("m 0000 65535");
             } else
                 printMemoryDump(command);
             break;
@@ -115,7 +126,9 @@ void execute(string &command) {
             }
             break;
         case 'p':
-            if (command == "p") {
+            if (config::jsonOutput)
+                jsonPorts();
+            else if (command == "p") {
                 dumpPorts("ALL");
             } else {
                 dumpPorts(command);
@@ -129,7 +142,10 @@ void execute(string &command) {
             if (command == string("reset")) {
                 emulator.reset();
             } else {
-                printRegisters();
+                if (config::jsonOutput)
+                    jsonRegisters();
+                else
+                    printRegisters();
             }
             break;
         case 'w':
@@ -142,9 +158,9 @@ void execute(string &command) {
                     break;
                 case '?':
                     Screen::printf("\t%-30s\t\t%s\n", "wm ADDRESS VALUE1 VALUE2",
-                           "Writes into memory the VALUE1 VALUE2... starting from ADDRESS");
+                                   "Writes into memory the VALUE1 VALUE2... starting from ADDRESS");
                     Screen::printf("\t%-30s\t\t%s\n", "wp ADDRESS VALUE1 VALUE2",
-                           "Writes into Ports the VALUE1 VALUE2... starting from ADDRESS");
+                                   "Writes into Ports the VALUE1 VALUE2... starting from ADDRESS");
                     Screen::printf("\t%-30s\t\t%s\n", "w?", "Shows this help menu");
 
 
@@ -201,7 +217,7 @@ void execute(string &command) {
             Screen::printf("\t%-30s\t\t%s\n", "d", "prints disassembly of the current program");
             Screen::printf("\t%-30s\t\t%s\n", "m", "Dumps all the memory in concise form");
             Screen::printf("\t%-30s\t\t%s\n", "m BEGIN_ADDRESS BYTE_COUNT",
-                   "Dumps BYTE_COUNT no of bytes starting from BEGIN_ADDRESS");
+                           "Dumps BYTE_COUNT no of bytes starting from BEGIN_ADDRESS");
             Screen::printf("\t%-30s\t\t%s\n", "ms ADDRESS1 ADDRESS2 ...", "Displays content of memory locations ");
             Screen::printf("\t%-30s\t\t%s\n", "n", "Executes next instruction");
             Screen::printf("\t%-30s\t\t%s\n", "n;", "Executes next instruction silently (NO OUTPUT)");
@@ -210,7 +226,8 @@ void execute(string &command) {
             Screen::printf("\t%-30s\t\t%s\n", "r", "Prints the Information on Registers");
             Screen::printf("\t%-30s\t\t%s\n", "s", "Dump up to 20 Values Around stack As Words(16bit)");
             Screen::printf("\t%-30s\t\t%s\n", "w?", "Help for commands related to Writing into Memory,port,etc");
-            Screen::printf("\t%-30s\t\t%s\n", "reset", "resets the Emulator ie for restarting program(brkpnt not lost)");
+            Screen::printf("\t%-30s\t\t%s\n", "reset",
+                           "resets the Emulator ie for restarting program(brkpnt not lost)");
             Screen::printf("\t%-30s\t\t%s\n", "?", "Displays this help ");
         }
     }
@@ -224,13 +241,13 @@ void print50stack() {
         return;
     }
     Word index = sp;
-    for (int i = 0; i < 50&&index<0xffff; ++i) {
+    for (int i = 0; i < 50 && index < 0xffff; ++i) {
         const char *pointer = (index == sp) ? "SP=>" : "";
         Byte vl = emulator.Ram.mem[index++];
         Byte vh = emulator.Ram.mem[index++];
         Word bc = (vh << 8) + vl;
-        Screen::printf("\t\t%5s:+%03d~| %04X | %04X(Hex) %05d(Dec)  Points to=> %02X\n", pointer,i*2, index, bc, bc,
-               emulator.Ram.mem[bc]);
+        Screen::printf("\t\t%5s:+%03d~| %04X | %04X(Hex) %05d(Dec)  Points to=> %02X\n", pointer, i * 2, index, bc, bc,
+                       emulator.Ram.mem[bc]);
     }
 }
 
@@ -241,7 +258,7 @@ void dumpPorts(string command) {
         Screen::printf("%s\n", string(161, '-').c_str());
         Screen::printf("|   BASE  |%27s%22s|%38s%27s|%21s%12s|\n", "HEXDUMP", "", "DECIMAL VIEW", "", "ASCII VIEW", "");
         Screen::printf("|         |%49s|%65s|%33s|\n", " 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F ",
-               " 000 001 002 003 004 005 006 007 008 009 00A 00B 00C 00D 00E 00F ", "");
+                       " 000 001 002 003 004 005 006 007 008 009 00A 00B 00C 00D 00E 00F ", "");
         Screen::printf("%s\n", string(161, '-').c_str());
         while (index <= 255) {
             Screen::printf("| port-%02X |", index);
@@ -357,7 +374,7 @@ void printMemoryDump(string command) {
     Screen::printf("%s\n", string(158, '-').c_str());
     Screen::printf("| BASE |%27s%22s|%38s%27s|%21s%12s|\n", "HEXDUMP", "", "DECIMAL VIEW", "", "ASCII VIEW", "");
     Screen::printf("|      |%49s|%65s|%33s|\n", " 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F ",
-           " 000 001 002 003 004 005 006 007 008 009 00A 00B 00C 00D 00E 00F ", "");
+                   " 000 001 002 003 004 005 006 007 008 009 00A 00B 00C 00D 00E 00F ", "");
     Screen::printf("%s\n", string(158, '-').c_str());
     bool skippable = count > 400;
     bool skip = false;
@@ -411,6 +428,98 @@ void printMemoryDump(string command) {
 
 }
 
+void jsonPorts() {
+    bool skip = false;
+    bool firstprop = true;
+    Screen::printf("{");
+    for (int index = 0; index < 0xff;) {
+        bool nonZerofound = false;
+        if (!skip) {
+            if (!firstprop)Screen::printf(",\n");
+            Screen::printf("\"%d\":[", index);
+            firstprop = false;
+        }
+        bool firstelem = true;
+        for (int i = 0; i < 16; ++i) {
+            if (emulator.ports.place[index + i] != 0) {
+                nonZerofound = true;
+            }
+            if (!skip) {
+                if (!firstelem)Screen::printf(",");
+                Screen::printf("%d", emulator.ports.place[index + i]);
+                firstelem = false;
+            }
+        }
+        if (!skip)
+            Screen::printf("]");
+        if (nonZerofound) {
+            if (skip) {
+                skip = false;
+                index &= 0xfff0;
+            } else {
+                index += 16;
+            }
+        } else {
+            skip = true;
+            index += 16;
+        }
+    }
+    Screen::printf("}\n");
+}
+
+void jsonMemory() {
+    bool skip = false;
+    bool firstprop = true;
+    Screen::printf("{");
+    for (int index = 0; index < 0xffff;) {
+        bool nonZerofound = false;
+        if (!skip) {
+            if (!firstprop)Screen::printf(",\n");
+            Screen::printf("\"%d\":[", index);
+            firstprop = false;
+        }
+        bool firstelem = true;
+        for (int i = 0; i < 16; ++i) {
+            if (emulator.Ram.mem[index + i] != 0) {
+                nonZerofound = true;
+            }
+            if (!skip) {
+                if (!firstelem)Screen::printf(",");
+                Screen::printf("%d", emulator.Ram.mem[index + i]);
+                firstelem = false;
+            }
+        }
+        if (!skip)
+            Screen::printf("]");
+        if (nonZerofound) {
+            if (skip) {
+                skip = false;
+                index &= 0xfff0;
+            } else {
+                index += 16;
+            }
+        } else {
+            skip = true;
+            index += 16;
+        }
+    }
+    Screen::printf("}\n");
+}
+
+void jsonRegisters() {
+    Byte a = emulator.A.get();
+    Byte b = emulator.B.get();
+    Byte c = emulator.C.get();
+    Byte d = emulator.D.get();
+    Byte e = emulator.E.get();
+    Byte h = emulator.H.get();
+    Byte l = emulator.L.get();
+    Word sp = emulator.SP.get();
+    Word pc = emulator.PC.get();
+    Byte flags = emulator.flags.get();
+    Screen::printf("[%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]\n", a, b, c, d, e, h, l, sp, pc, flags);
+}
+
 void printRegisters() {
     Byte a = emulator.A.get();
     Byte b = emulator.B.get();
@@ -430,13 +539,18 @@ void printRegisters() {
     const char *af = (emulator.flags.isSet_AuxCarryFlag() ? "HIGH" : "LOW");
     const char *pf = (emulator.flags.isSet_PairityFlag() ? "HIGH" : "LOW");
     Screen::printf("\t REGISTERS:-\n");
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | ZeroFlag      : %s\n", "A", a, a, isprint(a)?a:' ', zf);
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | CarryFlag     : %s\n", "B", b, b, isprint(b)?b:' ', cf);
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | SignFlag      : %s\n", "C", c, c, isprint(c)?c:' ', sf);
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | AuxCarryFlag  : %s\n", "D", d, d, isprint(d)?d:' ', af);
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | ParityFlag    : %s\n", "E", e, e, isprint(e)?e:' ', pf);
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n", "H", h, h, isprint(h)?h:' ');
-    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n", "L", l, l, isprint(l)?l:' ');
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | ZeroFlag      : %s\n", "A", a, a,
+                   isprint(a) ? a : ' ', zf);
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | CarryFlag     : %s\n", "B", b, b,
+                   isprint(b) ? b : ' ', cf);
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | SignFlag      : %s\n", "C", c, c,
+                   isprint(c) ? c : ' ', sf);
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | AuxCarryFlag  : %s\n", "D", d, d,
+                   isprint(d) ? d : ' ', af);
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)            | ParityFlag    : %s\n", "E", e, e,
+                   isprint(e) ? e : ' ', pf);
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n", "H", h, h, isprint(h) ? h : ' ');
+    Screen::printf("\t\t%-5s : %02X(Hex) %03d(Dec) '%c'(Ascii)\n", "L", l, l, isprint(l) ? l : ' ');
     Screen::printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n", "BC", bc, bc, emulator.Ram.mem[bc]);
     Screen::printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n", "DE", de, de, emulator.Ram.mem[de]);
     Screen::printf("\t\t%-5s : %04X(Hex) %05d(Dec)  Points to=> %02X\n", "HL", hl, hl, emulator.Ram.mem[hl]);
@@ -452,15 +566,15 @@ void printDebugStatus() {
     Screen::printf("\n\n%s\n\n", string(158, '-').c_str());
     if (emulator.halted)Screen::printf("\t\t\tEmulater Has Halted!\n\t\t\tPress reset to restart from Beginning\n\n");
     if (emulator.brkhit)
-        Screen::printf("\t\t\tBreakpoint Hit!\n\t\t\tinspect memory(m) registers(r) ports(p) and stack(s) then continue(c/n)\n\n");
+        Screen::printf(
+                "\t\t\tBreakpoint Hit!\n\t\t\tinspect memory(m) registers(r) ports(p) and stack(s) then continue(c/n)\n\n");
 }
 
 void DisassembleFile() {
-    if(!emulator.halted&& disassembler.line_no(emulator.PC.get())==0)
-    {
-        auto lmap=disassembler.labelMap;
-        disassembler=Disassembler(emulator.binary_from_pc(),emulator.PC.get());
-        disassembler.labelMap=lmap;
+    if (!emulator.halted && disassembler.line_no(emulator.PC.get()) == 0) {
+        auto lmap = disassembler.labelMap;
+        disassembler = Disassembler(emulator.binary_from_pc(), emulator.PC.get());
+        disassembler.labelMap = lmap;
         disassembler.Disassemble();
     }
     for (auto &item:disassembler.Disassembled) {
@@ -471,17 +585,16 @@ void DisassembleFile() {
         char brk = (emulator.breakpoints.count(item.address) > 0) ? '*' : ' ';
         const char *pc = ((emulator.PC.get() == item.address) ? "PC=>" : "    ");
         char labelsep = (item.label.empty() ? ' ' : ':');
-        if(disassembler.grapher.blockbreaks.count(item.address)>0) {
+        if (disassembler.grapher.blockbreaks.count(item.address) > 0) {
             string arrow;
-            for(auto ch: item.arrows)
-            {
-                if(ch=='|'|| ch=='`' ||ch=='+') arrow+='|';
-                else arrow+=" ";
+            for (auto ch: item.arrows) {
+                if (ch == '|' || ch == '`' || ch == '+') arrow += '|';
+                else arrow += " ";
             }
-            Screen::printf("\t%20s|%11s|\n",arrow.c_str(),"");
+            Screen::printf("\t%20s|%11s|\n", arrow.c_str(), "");
         }
         Screen::printf("\t%20s|%s%c%4XH | %-9s %20s%c %-20s\n", item.arrows.c_str(), pc, brk, item.address, bytes,
-               item.label.c_str(), labelsep, item.Assembly.c_str());
-        if(item.Assembly=="HLT") break;
+                       item.label.c_str(), labelsep, item.Assembly.c_str());
+        if (item.Assembly == "HLT") break;
     }
 }
