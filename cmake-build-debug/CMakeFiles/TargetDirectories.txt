@@ -1,0 +1,4 @@
+C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/CMakeFiles/emulator.dir
+C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/CMakeFiles/assembler.dir
+C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir

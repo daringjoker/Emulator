@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="emulator"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="emulator">
+				<Option output="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/emulator.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 emulator"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="emulator/fast">
+				<Option output="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/emulator.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 emulator/fast"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assembler">
+				<Option output="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/assembler.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 assembler"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assembler/fast">
+				<Option output="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/assembler.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 assembler/fast"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/DaringJoker/Documents/programming/emulator/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/Assembler.cpp">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/Assembler.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/ExecFileFormat/Execfile.cpp">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/ExecFileFormat/Execfile.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/Parser.cpp">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/Parser.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/Tokenizer.cpp">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/Tokenizer.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Assembler/assembler_main.cpp">
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/AddressBus.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/AddressBus.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/AllComponents.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/DataBus.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/DataBus.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/FlagRegister.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/FlagRegister.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/Memory.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/Memory.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/MemoryController.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/MemoryController.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/MemoryPointerRegiser.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/MemoryPointerRegiser.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/PortController.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/PortController.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/Ports.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/Ports.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/Register.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/Register.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/RegisterPair.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/RegisterPair.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Components/constants.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/DataTypes.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/Decoder.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/Emulator.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/Emulator.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/Errors.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/Executor.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/fetch.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/Arithmetic.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/Datatransfer.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/FlowControl.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/InputOutput.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/Interrupts.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/Logical.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/StackOperations.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Core/microcode/special.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Argparse.cpp">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Argparse.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Disassembler.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Disassembler.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Grapher.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Grapher.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Screen.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/Helper/Screen.h">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/InstructionSet/Instructions.h">
+			<Option target="emulator"/>
+			<Option target="assembler"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/TranslationLayer/main.cpp">
+			<Option target="emulator"/>
+		</Unit>
+		<Unit filename="C:/Users/DaringJoker/Documents/programming/emulator/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
