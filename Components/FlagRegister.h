@@ -5,14 +5,14 @@
 #include "Register.h"
 
 typedef struct {
-    unsigned int signFlag: 1;
-    unsigned int zeroFlag: 1;
-    unsigned int nc1: 1;
-    unsigned int auxCarryFlag: 1;
-    unsigned int nc2: 1;
-    unsigned int pairityFlag: 1;
-    unsigned int nc3: 1;
     unsigned int carryFlag: 1;
+    unsigned int nc3: 1;
+    unsigned int pairityFlag: 1;
+    unsigned int nc2: 1;
+    unsigned int auxCarryFlag: 1;
+    unsigned int nc1: 1;
+    unsigned int zeroFlag: 1;
+    unsigned int signFlag: 1;
 } FlagBits;
 
 class FlagRegister : public Register {

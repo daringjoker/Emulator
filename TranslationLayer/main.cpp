@@ -6,6 +6,7 @@
 #include "../Helper/Screen.h"
 
 void jsonMemory();
+void jsonbreakpoints();
 
 void jsonPorts();
 
@@ -171,8 +172,12 @@ void execute(string &command) {
                     emulator.breakpoints.clear();
                     break;
                 case 'l':
-                    for (auto item:emulator.breakpoints) {
-                        Screen::printf("\tBreakpoint at %04XH \n", item & 0xffff);
+                    if(config::jsonOutput)
+                        jsonbreakpoints();
+                    else{
+                        for (auto item:emulator.breakpoints) {
+                            Screen::printf("\tBreakpoint at %04XH \n", item & 0xffff);
+                        }
                     }
                     break;
                 case 'a': {
@@ -367,7 +372,7 @@ void printMemoryDump(string command) {
         }
         return;
     }
-    baseaddr &= 0xfff0;
+    baseaddr &= 0xfff0U;
     unsigned int end = baseaddr + count;
     unsigned int index = baseaddr;
     Screen::printf("\n%*s\n", 83, "MEMORY DUMP");
@@ -519,6 +524,18 @@ void jsonRegisters() {
     Byte flags = emulator.flags.get();
     Screen::printf("[%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]\n", a, b, c, d, e, h, l, sp, pc, flags);
 }
+void jsonbreakpoints(){
+        Screen::printf("[");
+        bool first=true;
+        for(auto brkpt : emulator.breakpoints)
+        {
+            if(!first)Screen::printf(",");
+            first=false;
+            Screen::printf("%d",brkpt);
+        }
+        Screen::printf("]");
+
+    }
 
 void printRegisters() {
     Byte a = emulator.A.get();
